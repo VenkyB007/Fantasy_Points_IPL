@@ -1,0 +1,171 @@
+basePath: /
+definitions:
+  models.Player:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      team:
+        type: string
+    type: object
+  models.Score:
+    properties:
+      id:
+        type: integer
+      match:
+        type: integer
+      runs:
+        type: integer
+      wickets:
+        type: integer
+    type: object
+  models.Stats:
+    properties:
+      match:
+        type: integer
+      runs:
+        type: integer
+      wickets:
+        type: integer
+    type: object
+host: localhost:8989
+info:
+  contact:
+    email: soberkoder@swagger.io
+    name: API Support
+  description: In this Service, You can Post, Get, Delete Player details
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Player Service API
+  version: "1.0"
+paths:
+  /player:
+    post:
+      consumes:
+      - application/json
+      description: Create a new  Player with the input payload
+      parameters:
+      - description: Player Details
+        in: body
+        name: Player
+        required: true
+        schema:
+          $ref: '#/definitions/models.Player'
+      responses:
+        "200":
+          description: Successfully Posted!!
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            type: object
+      summary: Create a new  Player
+      tags:
+      - Players
+  /player/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete details of Player
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully Deleted!!
+          schema:
+            type: string
+      summary: Delete details of Player based on player id
+      tags:
+      - Players
+  /player/{id}/score:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Scores of Player
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully Deleted!!
+          schema:
+            type: string
+      summary: Delete Scores of Player based on player id
+      tags:
+      - Scores
+    post:
+      consumes:
+      - application/json
+      description: Post player scores with the input payload
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Player Scores
+        in: body
+        name: Score
+        required: true
+        schema:
+          $ref: '#/definitions/models.Stats'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully Posted!!
+          schema:
+            type: string
+      summary: Post scores
+      tags:
+      - Scores
+  /players:
+    get:
+      consumes:
+      - application/json
+      description: Get details of all Players
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Player'
+      summary: Get details of all Players from the database
+      tags:
+      - Players
+  /players/scores:
+    get:
+      consumes:
+      - application/json
+      description: Get Scores of all Players
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Score'
+      summary: Get Scores of all Players from the database
+      tags:
+      - Scores
+swagger: "2.0"

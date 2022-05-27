@@ -1,0 +1,45 @@
+basePath: /
+host: localhost:9090
+info:
+  contact:
+    email: soberkoder@swagger.io
+    name: API Support
+  description: In this Service, Ranked Cap-holders and League Scores are shown
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Fantasy League Service API
+  version: "1.0"
+paths:
+  /cap-holders:
+    get:
+      consumes:
+      - application/json
+      description: Get Cap Holders
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Get CapHolders
+      tags:
+      - Fantasy_League_Service
+  /fantasy-scores:
+    get:
+      consumes:
+      - application/json
+      description: Get Fantasy Scores
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Get Fantasy Scores
+      tags:
+      - Fantasy_League_Service
+swagger: "2.0"
